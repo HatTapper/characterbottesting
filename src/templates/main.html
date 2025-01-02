@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- this will grab the stylesheet in src/static/stylesheets/ -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/main.css') }}">
 </head>
 <body>
+<div class="testingThis">Hello</div>
 <form action="/post" method="post" target="output">
     <label>
         Enter your prompt here.

@@ -1,7 +1,7 @@
 # this file handles the medium between the front-end and back-end of the program
 
 from flask import Flask, render_template, request
-from bot_controller import get_response
+from src.bot_controller import get_response
 
 app = Flask(__name__)
 
