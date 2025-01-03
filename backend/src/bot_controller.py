@@ -9,6 +9,8 @@ load_dotenv()
 API_KEY = os.getenv("API_KEY")
 client = Groq(api_key=API_KEY)
 
+
+CHARACTERS = {}
 # the last response the bot has replied with
 last_response = " "
 # the "personality" the bot attempts to imitate
@@ -19,6 +21,9 @@ PARAMETERS = "Your response must be no more than 100 words. You should refrain f
 BACK_STORY = "Bondrewd was once an idealistic man, but his obsession with the Abyss led him to abandon morality in pursuit of its secrets. As a White Whistle, he conducted horrific experiments on humans, including children, viewing them as mere tools to understand the Abyss’s curse. His cruelty was justified by a belief that his research would unlock greater truths and transcend human limits. Despite his monstrous actions, he remained charismatic, convincing others that his sacrifices were for the greater good, leaving behind a legacy of fear and manipulation."
 # the goal the bot must work towards achieving in their responses
 GOAL = "You must roleplay with the user."
+
+def select_character(name):
+    return "Bondrewd"
 
 # given a prompt will send an api request with the predetermined parameters defined above and returns the response
 def get_response(prompt):
