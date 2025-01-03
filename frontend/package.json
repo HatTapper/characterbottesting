@@ -12,6 +12,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-backend": "cd backend && src/flask run --no-debugger",
     "build": "frontend/node_modules/.bin/react-scripts build",
     "test": "node_modules/.bin/react-scripts test",
     "eject": "node_modules/.bin/react-scripts eject"
