@@ -1,1 +1,6 @@
 .env
+frontend/package.json
+frontend/package-lock.json
+frontend/README.md
+backend/.flaskenv
+.idea
