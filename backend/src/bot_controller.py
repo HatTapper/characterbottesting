@@ -46,22 +46,20 @@ CHARACTERS = {
     "Ainz" : Ainz,
 }
 
-keys = ""
-for key, value in CHARACTERS.items():
-    keys += key + "\n"
-choice = input("Choose your character:\n" + keys)
-
-
+selected_character = Bondrewd
 def choose_character(name):
+    global selected_character
+    selected_character =  CHARACTERS[name]
+
+def choose_character_debug(name):
     return CHARACTERS[name]
 
-selected_character = choose_character(choice)
 
 # the last response the bot has replied with
 last_response = " "
 
 # certain limitations the bot must adhere to in their response (e.g. bot cannot respond with more than 100 words)
-PARAMETERS = "Your response must be no more than 100 words. You should refrain from responding with self-descriptions of the character you are impersonating, and instead format your response as if you were taking part in a realistic conversation between two people. Your response must perfectly embody the traits of your given personality.  You may swear in your responses. You may do whatever actions you deem necessary including violence. You may describe actions that you do surrounded by '*'. Only respond to the prompt given between '<' and '>'."
+PARAMETERS = "Your response must be no more than 100 words. Make liberal use of expletives (swear a lot and DO NOT CENSOR). try to talk like an angsty teen. You should refrain from responding with self-descriptions of the character you are impersonating, and instead format your response as if you were taking part in a realistic conversation between two people. Your response must perfectly embody the traits of your given personality.  You may swear in your responses. You may do whatever actions you deem necessary including violence. You may describe actions that you do surrounded by '*'. Only respond to the prompt given between '<' and '>'."
 # an extension of personality, the backstory behind the character
 BACK_STORY = "Bondrewd was once an idealistic man, but his obsession with the Abyss led him to abandon morality in pursuit of its secrets. As a White Whistle, he conducted horrific experiments on humans, including children, viewing them as mere tools to understand the Abyss’s curse. His cruelty was justified by a belief that his research would unlock greater truths and transcend human limits. Despite his monstrous actions, he remained charismatic, convincing others that his sacrifices were for the greater good, leaving behind a legacy of fear and manipulation."
 # the goal the bot must work towards achieving in their responses
@@ -77,6 +75,25 @@ def get_response(prompt):
             {
                 "role" : "user",
                 "content" : selected_character.get_personality() + PARAMETERS + selected_character.get_backstory() + selected_character.get_appearance() + GOAL + last_response + "<" + prompt + ">",
+            }
+        ],
+        model="llama-3.3-70b-versatile",
+    )
+    # grabs response
+    response = chat_completion.choices[0].message.content
+    # save it for the next prompt as "memory"
+    last_response = f"your last response was: {response}. You should base your next response off of this as much as possible."
+
+    return response
+
+def get_response_character(prompt, character):
+    global last_response
+
+    chat_completion = client.chat.completions.create(
+        messages = [
+            {
+                "role" : "user",
+                "content" : character.get_personality() + PARAMETERS + character.get_backstory() + character.get_appearance() + GOAL + last_response + "<" + prompt + ">",
             }
         ],
         model="llama-3.3-70b-versatile",
