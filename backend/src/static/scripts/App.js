@@ -1,4 +1,4 @@
-import React from 'src/static/scripts/App';
+import React from 'backend/src/static/scripts/App';
 
 function App()
 {
