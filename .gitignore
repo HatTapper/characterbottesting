@@ -3,3 +3,10 @@ frontend/package.json
 frontend/package-lock.json
 backend/.flaskenv
 .idea
+.idea/discord.xml
+.idea/jsLibraryMappings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/characterbottesting.iml
